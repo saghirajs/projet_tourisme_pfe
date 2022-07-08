@@ -1,90 +1,78 @@
-import React from "react";
-
+import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import CanvasJSReact from "../../assets/canvasjs.react";
+import Axios from "axios";
+// components
+var CanvasJS = CanvasJSReact.CanvasJS;
+var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 function MapExample() {
-  const mapRef = React.useRef(null);
+  const [Element1, setElement1] = useState([]);
+
+  var CanvasJS = CanvasJSReact.CanvasJS;
+  var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+  const addSymbols = (e) => {
+    var suffixes = ["", "K", "M", "B"];
+    var order = Math.max(Math.floor(Math.log(e.value) / Math.log(1000)), 0);
+    if (order > suffixes.length - 1) order = suffixes.length - 1;
+    var suffix = suffixes[order];
+    return CanvasJS.formatNumber(e.value / Math.pow(1000, order)) + suffix;
+  };
   React.useEffect(() => {
-    let google = window.google;
-    let map = mapRef.current;
-    let lat = "40.748817";
-    let lng = "-73.985428";
-    const myLatlng = new google.maps.LatLng(lat, lng);
-    const mapOptions = {
-      zoom: 12,
-      center: myLatlng,
-      scrollwheel: false,
-      zoomControl: true,
-      styles: [
-        {
-          featureType: "administrative",
-          elementType: "labels.text.fill",
-          stylers: [{ color: "#444444" }],
-        },
-        {
-          featureType: "landscape",
-          elementType: "all",
-          stylers: [{ color: "#f2f2f2" }],
-        },
-        {
-          featureType: "poi",
-          elementType: "all",
-          stylers: [{ visibility: "off" }],
-        },
-        {
-          featureType: "road",
-          elementType: "all",
-          stylers: [{ saturation: -100 }, { lightness: 45 }],
-        },
-        {
-          featureType: "road.highway",
-          elementType: "all",
-          stylers: [{ visibility: "simplified" }],
-        },
-        {
-          featureType: "road.arterial",
-          elementType: "labels.icon",
-          stylers: [{ visibility: "off" }],
-        },
-        {
-          featureType: "transit",
-          elementType: "all",
-          stylers: [{ visibility: "off" }],
-        },
-        {
-          featureType: "water",
-          elementType: "all",
-          stylers: [{ color: "#4299e1" }, { visibility: "on" }],
-        },
-      ],
-    };
-
-    map = new google.maps.Map(map, mapOptions);
-
-    const marker = new google.maps.Marker({
-      position: myLatlng,
-      map: map,
-      animation: google.maps.Animation.DROP,
-      title: "Notus React!",
-    });
-
-    const contentString =
-      '<div class="info-window-content"><h2>Notus React</h2>' +
-      "<p>A free Admin for Tailwind CSS, React, and React Hooks.</p></div>";
-
-    const infowindow = new google.maps.InfoWindow({
-      content: contentString,
-    });
-
-    google.maps.event.addListener(marker, "click", function () {
-      infowindow.open(map, marker);
-    });
+    const elements = []
+   // let elements = [];
+  
+    let Res1 = [];
+  Axios
+  .get("http://localhost:5000/api/test14")
+  .then((response) => {
+    Res1 = response.data;
+   console.log( Res1)
+     
+    //console.log(response.data);
+    for(let i =0; i< Res1.length; i++){
+      elements.push({x: new Date(Res1[i].year), y:Res1[i].expenditures});
+    //  elements.push(Res1[i].forecast);
+    }
+   
+  console.log ( "elements ", elements)
+  //console.log ("elements", elements)
+  
+   setElement1 (elements)
+  }).catch(err => {
+  console.log(err);
   });
+  // console.log("hihiihihi:", element2s, element2);
+  
+  },);
+  const options = {
+    animationEnabled: true,
+    theme: "light2",
+    title:{
+      text: "Most Popular Social Networking Sites"
+    },
+    axisX: {
+      title: "Social Network",
+      reversed: true,
+    },
+    axisY: {
+      title: "Monthly Active Users",
+      includeZero: true,
+      labelFormatter: this.addSymbols
+    },
+    data: [{
+      type: "bar",
+      dataPoints: Element1
+    }]
+  }
   return (
     <>
-      <div className="relative w-full rounded h-600-px">
-        <div className="rounded h-full" ref={mapRef} />
-      </div>
+      <CanvasJSChart options = {options}
+				/* onRef={ref => this.chart = ref} */
+			/>
     </>
   );
+  
 }
+
 
 export default MapExample;

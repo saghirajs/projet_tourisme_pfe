@@ -124,7 +124,7 @@ export default function Sidebar() {
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
-                  Settings
+                  Africa Maps
                 </Link>
               </li>
 
@@ -146,7 +146,7 @@ export default function Sidebar() {
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
-                  Tables
+                  Upload DataSet
                 </Link>
               </li>
 
@@ -168,10 +168,9 @@ export default function Sidebar() {
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
-                  PieStatics
+                  Statistics Forecast
                 </Link>
               </li>
-
 
               <li className="items-center">
                 <Link
@@ -191,7 +190,7 @@ export default function Sidebar() {
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
-                  ColStatics
+                  Tourism Arrivals
                 </Link>
               </li>
 
@@ -213,12 +212,10 @@ export default function Sidebar() {
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
-                  Maps
+                  Tourism Expenditures
                 </Link>
               </li>
             </ul>
-
-      
 
             {/* Divider */}
             <hr className="my-4 md:min-w-full" />
@@ -253,7 +250,6 @@ export default function Sidebar() {
             {/* Divider */}
             <hr className="my-4 md:min-w-full" />
             {/* Heading */}
-          
           </div>
         </div>
       </nav>

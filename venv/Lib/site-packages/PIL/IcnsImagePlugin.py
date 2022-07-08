@@ -167,7 +167,7 @@ class IcnsFile:
         self.dct = dct = {}
         self.fobj = fobj
         sig, filesize = nextheader(fobj)
-        if not _accept(sig):
+        if sig != MAGIC:
             raise SyntaxError("not an icns file")
         i = HEADERSIZE
         while i < filesize:
@@ -286,22 +286,21 @@ class IcnsImageFile(ImageFile.ImageFile):
                 self.best_size[1] * self.best_size[2],
             )
 
-        px = Image.Image.load(self)
-        if self.im is not None and self.im.size == self.size:
+        Image.Image.load(self)
+        if self.im and self.im.size == self.size:
             # Already loaded
-            return px
+            return
         self.load_prepare()
         # This is likely NOT the best way to do it, but whatever.
         im = self.icns.getimage(self.best_size)
 
         # If this is a PNG or JPEG 2000, it won't be loaded yet
-        px = im.load()
+        im.load()
 
         self.im = im.im
         self.mode = im.mode
         self.size = im.size
-
-        return px
+        self.load_end()
 
 
 def _save(im, fp, filename):

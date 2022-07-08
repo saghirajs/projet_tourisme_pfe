@@ -25,7 +25,6 @@ Classifier: Programming Language :: Python :: 3.10
 Classifier: Topic :: Scientific/Engineering
 Requires-Python: >=3.8
 Description-Content-Type: text/markdown
-License-File: LICENSE
 Requires-Dist: python-dateutil (>=2.8.1)
 Requires-Dist: pytz (>=2020.1)
 Requires-Dist: numpy (>=1.18.5) ; platform_machine != "aarch64" and platform_machine != "arm64" and python_version < "3.10"

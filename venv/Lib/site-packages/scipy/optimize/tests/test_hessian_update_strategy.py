@@ -111,7 +111,9 @@ class TestHessianUpdateStrategy(TestCase):
         delta_grad = [grad_list[i+1]-grad_list[i]
                       for i in range(len(grad_list)-1)]
         # Check curvature condition
-        for s, y in zip(delta_x, delta_grad):
+        for i in range(len(delta_x)):
+            s = delta_x[i]
+            y = delta_grad[i]
             if np.dot(s, y) <= 0:
                 raise ArithmeticError()
         # Define QuasiNewton update
@@ -122,13 +124,15 @@ class TestHessianUpdateStrategy(TestCase):
             hess.initialize(len(x_list[0]), 'hess')
             inv_hess.initialize(len(x_list[0]), 'inv_hess')
             # Compare the hessian and its inverse
-            for s, y in zip(delta_x, delta_grad):
+            for i in range(len(delta_x)):
+                s = delta_x[i]
+                y = delta_grad[i]
                 hess.update(s, y)
                 inv_hess.update(s, y)
                 B = hess.get_matrix()
                 H = inv_hess.get_matrix()
                 assert_array_almost_equal(np.linalg.inv(B), H, decimal=10)
-            B_true = prob.hess(x_list[len(delta_x)])
+            B_true = prob.hess(x_list[i+1])
             assert_array_less(norm(B - B_true)/norm(B_true), 0.1)
 
     def test_SR1_skip_update(self):

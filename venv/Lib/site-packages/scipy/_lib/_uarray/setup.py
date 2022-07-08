@@ -19,8 +19,7 @@ def configuration(parent_package='', top_path=None):
     config = Configuration('_uarray', parent_package, top_path)
     config.add_data_files('LICENSE')
     ext = config.add_extension('_uarray',
-                               sources=['_uarray_dispatch.cxx', 'vectorcall.cxx'],
-                               depends=['small_dynamic_array.h', 'vectorcall.h'],
+                               sources=['_uarray_dispatch.cxx'],
                                language='c++')
     ext._pre_build_hook = pre_build_hook
     return config

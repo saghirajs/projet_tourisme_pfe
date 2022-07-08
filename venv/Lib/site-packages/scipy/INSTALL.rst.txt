@@ -1,7 +1,7 @@
 Building and installing SciPy
 +++++++++++++++++++++++++++++
 
-See https://www.scipy.org/install/
+See https://www.scipy.org/install.html
 
 .. Contents::
 

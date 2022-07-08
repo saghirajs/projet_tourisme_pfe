@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import CanvasJSReact from "../../assets/canvasjs.react";
+import Axios from "axios";
 // components
-
-import MapExample from "components/Maps/MapExample.js";
+var CanvasJS = CanvasJSReact.CanvasJS;
+var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 export default function Maps() {
+
+  const [Element1, setElement1] = useState([]);
   var CanvasJS = CanvasJSReact.CanvasJS;
   var CanvasJSChart = CanvasJSReact.CanvasJSChart;
   const addSymbols = (e) => {
@@ -14,6 +18,34 @@ export default function Maps() {
     var suffix = suffixes[order];
     return CanvasJS.formatNumber(e.value / Math.pow(1000, order)) + suffix;
   };
+
+  React.useEffect(() => {
+    const elements = []
+   // let elements = [];
+  
+    let Res1 = [];
+  Axios
+  .get("http://localhost:5000/api/test14")
+  .then((response) => {
+    Res1 = response.data;
+   console.log( Res1)
+     
+    //console.log(response.data);
+    for(let i =0; i< Res1.length; i++){
+      elements.push({x: new Date(Res1[i].year), y:Res1[i].expenditures});
+    //  elements.push(Res1[i].forecast);
+    }
+   
+  console.log ( "elements ", elements)
+  //console.log ("elements", elements)
+  
+   setElement1 (elements)
+  }).catch(err => {
+  console.log(err);
+  });
+  // console.log("hihiihihi:", element2s, element2);
+  
+  },);
   const options = {
     animationEnabled: true,
     theme: "light2",
@@ -21,7 +53,7 @@ export default function Maps() {
       text: "Tourism Expenditures",
     },
     axisX: {
-      title: "Country",
+      title: "Year",
       reversed: true,
     },
     axisY: {
@@ -32,15 +64,7 @@ export default function Maps() {
     data: [
       {
         type: "bar",
-        dataPoints: [
-          { y: 2200000000, label: "SOUTH AFRICA" },
-          { y: 1800000000, label: "ANGOLA" },
-          { y: 800000000, label: "CÔTE D'IVOIRE" },
-          { y: 563000000, label: "SEYCHELLES" },
-          { y: 376000000, label: "TUNISIE" },
-          { y: 336000000, label: "MAURITANIE" },
-          { y: 330000000, label: "CAMEROON" },
-        ],
+        dataPoints: Element1
       },
     ],
   };

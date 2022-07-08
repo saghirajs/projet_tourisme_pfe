@@ -85,7 +85,7 @@ console.log(err);
       responsive: true,
       title: {
         display: false,
-        text: "diagnostic Charts",
+        text: "Arrivals / Forecast Compare Charts",
         fontColor: "white",
       },
       legend: {

@@ -113,11 +113,12 @@ console.log(err);
 },);
 const option = {
   animationEnabled: true,	
+  exportEnabled: true,
   title:{
-    text: "Forecast/ Arrivals Compare"
+    text: "Actual & Forecast Arrivals Comparision"
   },
   axisY : {
-    title: "Forcast/ Arrivals Values"
+    title: "Actual & Forecast Arrivals Values"
   },
   toolTip: {
     shared: true
@@ -171,9 +172,10 @@ console.log(err);
 
 const optionss = {
   animationEnabled: true,
+  exportEnabled: true,
   theme: "light2",
   title:{
-    text: "Stock Price of BMW - March 2018"
+    text: "Employments statistics Tourism"
   },
   axisX:{
     valueFormatString: "DD MMM YYYY",
@@ -183,7 +185,7 @@ const optionss = {
     }
   },
   axisY: {
-    title: "Closing Price (in EUR)",
+    title: "Value",
     valueFormatString: "##0.00",
     crosshair: {
       enabled: true,
@@ -204,13 +206,6 @@ const optionss = {
   return (
     <>
       <div>
-			<CanvasJSChart options = {options} 
-				/* onRef={ref => this.chart = ref} */
-			/>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
       <CanvasJSChart options = {option} 
 				/* onRef={ref => this.chart = ref} */
 			/>
@@ -218,6 +213,14 @@ const optionss = {
       <br></br>
       <br></br>
       <br></br>
+			<CanvasJSChart options = {options} 
+				/* onRef={ref => this.chart = ref} */
+			/>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+
       <CanvasJSChart options = {optionss} 
 				/* onRef={ref => this.chart = ref} */
 			/>
