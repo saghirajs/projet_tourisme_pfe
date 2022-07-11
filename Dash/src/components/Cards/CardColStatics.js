@@ -92,7 +92,7 @@ const option = {
   animationEnabled: true,
   theme: "light1",
   title: {
-    text: "Arrivals Year"
+    text: "Arrivals Actual"
   },
   axisY: {
   title: "Active Installations",

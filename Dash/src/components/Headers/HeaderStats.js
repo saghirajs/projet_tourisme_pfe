@@ -16,11 +16,9 @@ export default function HeaderStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="Arrivals"
-                  statTitle="350,897"
+                  statTitle="75,471,845"
                   statArrow="up"
-                  statPercent="3.48"
                   statPercentColor="text-emerald-500"
-                  statDescripiron="Since last month"
                   statIconName="far fa-chart-bar"
                   statIconColor="bg-red-500"
                 />
@@ -28,7 +26,7 @@ export default function HeaderStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="Employment"
-                  statTitle="2,356"
+                  statTitle="524,691"
                   statArrow="down"
                   statPercent="3.48"
                   statPercentColor="text-red-500"
@@ -39,7 +37,7 @@ export default function HeaderStats() {
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
-                  statSubtitle="Countries"
+                  statSubtitle="Expenditures"
                   statTitle="924"
                   statArrow="down"
                   statPercent="1.10"
@@ -51,7 +49,8 @@ export default function HeaderStats() {
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
-                  statSubtitle="TEst"
+                  statSubtitle="Countries"
+                  statTitle="55"
                   statPstatPercentercentColor="text-emerald-500"
                   statIconName="fas fa-percent"
                   statIconColor="bg-lightBlue-500"
