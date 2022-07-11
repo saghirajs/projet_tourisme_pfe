@@ -1,8 +1,8 @@
 {
-  "name": "notus-react",
+  "name": "tourism_analytics_pfe",
   "version": "1.1.0",
-  "description": "Notus React - A free Tailwind CSS and React UI Kit and Admin by Creative Tim.",
-  "repository": "https://github.com/creativetimofficial/notus-react",
+  "description": "AfroPredict is a tourism analytics and forcasting tourism data",
+  "repository": "https://github.com/saghirsaghir/projet_tourisme_pfe",
   "license": "MIT",
   "dependencies": {
     "@fortawesome/fontawesome-free": "5.15.3",
